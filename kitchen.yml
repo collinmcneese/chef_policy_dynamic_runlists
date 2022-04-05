@@ -1,0 +1,38 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_zero
+
+verifier:
+  name: inspec
+
+platforms:
+  - name: ubuntu-20.04
+
+suites:
+  - name: base
+    verifier:
+      inspec_tests:
+        - test/integration/default/base_test.rb
+    provisioner:
+      policyfile_path: cookbooks/base_cookbook/Policyfile.rb
+  - name: newapp-tag
+    verifier:
+      inspec_tests:
+        - test/integration/default/newapp_test.rb
+    provisioner:
+      policyfile_path: cookbooks/base_cookbook/Policyfile.rb
+    attributes:
+      tags:
+        - newapp_cookbook_run
+  - name: newapp2-tag
+    verifier:
+      inspec_tests:
+        - test/integration/default/newapp2_test.rb
+    provisioner:
+      policyfile_path: cookbooks/base_cookbook/Policyfile.rb
+    attributes:
+      tags:
+        - newapp2_cookbook_run

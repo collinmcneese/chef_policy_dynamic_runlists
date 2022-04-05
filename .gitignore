@@ -1,0 +1,42 @@
+
+.vagrant
+*~
+*#
+.#*
+\#*#
+.*.sw[a-z]
+*.un~
+
+# Bundler
+Gemfile.lock
+gems.locked
+bin/*
+.bundle/*
+
+# test kitchen
+.kitchen/
+kitchen.local.yml
+
+# Chef Infra
+Berksfile.lock
+.zero-knife.rb
+Policyfile.lock.json
+
+## Ignore Chef related files and secrets
+.chef
+.chef/*.pem
+.chef/encrypted_data_bag_secret
+
+## Ignore Chef-Zero files
+clients
+nodes
+
+# ## OS junk files
+[Tt]humbs.db
+*.DS_Store
+
+# ##ruby
+# *.gem
+# Gemfile
+Gemfile.lock
+.rake_test_cache
