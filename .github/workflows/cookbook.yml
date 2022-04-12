@@ -26,6 +26,10 @@ jobs:
     env:
       CHEF_LICENSE: accept-no-persist
     steps:
+      - name: Check Out Code
+        uses: actions/checkout@v2
+      - name: install chef-workstation
+        uses: actionshub/chef-install@main
       - name: Cookstyle Check
         run: |
           cd cookbooks/${{ matrix.cookbooks }}
@@ -42,5 +46,9 @@ jobs:
     env:
       CHEF_LICENSE: accept-no-persist
     steps:
+      - name: Check Out Code
+        uses: actions/checkout@v2
+      - name: install chef-workstation
+        uses: actionshub/chef-install@main
       - name: Kitchen Test
         run: kitchen test ${{ matrix.suites }}
