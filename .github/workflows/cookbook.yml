@@ -16,17 +16,6 @@ jobs:
         uses: actions/checkout@v2
       - name: install chef-workstation
         uses: actionshub/chef-install@main
-  lint:
-    needs:
-      - verify
-    runs-on: ubuntu-latest
-    env:
-      CHEF_LICENSE: accept-no-persist
-    steps:
-      - name: Check Out Code
-        uses: actions/checkout@v2
-      - name: install chef-workstation
-        uses: actionshub/chef-install@main
       - name: Cookstyle Check
         run: |
           chef install cookbooks/app_cookbook/Policyfile.rb
@@ -37,7 +26,6 @@ jobs:
   test:
     needs:
       - verify
-      - lint
     strategy:
       matrix:
         suites: ['base', 'newapp-tag', 'newapp2-tag']
