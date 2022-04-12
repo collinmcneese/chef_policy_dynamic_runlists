@@ -19,9 +19,6 @@ jobs:
   lint:
     needs:
       - verify
-    strategy:
-      matrix:
-        cookbooks: ['app_cookbook', 'base_cookbook', 'newapp_cookbook', 'newapp2_cookbook']
     runs-on: ubuntu-latest
     env:
       CHEF_LICENSE: accept-no-persist
