@@ -8,10 +8,6 @@ on:
 
 jobs:
   verify:
-    strategy:
-      matrix:
-        cookbooks: ['app_cookbook', 'base_cookbook', 'newapp_cookbook', 'newapp2_cookbook']
-        suites: ['base', 'newapp-tag', 'newapp2-tag']
     runs-on: ubuntu-latest
     env:
       CHEF_LICENSE: accept-no-persist
@@ -20,9 +16,26 @@ jobs:
         uses: actions/checkout@v2
       - name: install chef-workstation
         uses: actionshub/chef-install@main
+  lint:
+    strategy:
+      matrix:
+        cookbooks: ['app_cookbook', 'base_cookbook', 'newapp_cookbook', 'newapp2_cookbook']
+    runs-on: ubuntu-latest
+    env:
+      CHEF_LICENSE: accept-no-persist
+    steps:
       - name: Cookstyle Check
-        run: cd cookbooks/${{ matrix.cookbooks }} && cookstyle
-      - name: Unit Test
-        run: cd cookbooks/${{ matrix.cookbooks }} && chef exec rspec
+        run: |
+          cd cookbooks/${{ matrix.cookbooks }}
+          chef install || chef update
+          cookstyle
+  test:
+    strategy:
+      matrix:
+        suites: ['base', 'newapp-tag', 'newapp2-tag']
+    runs-on: ubuntu-latest
+    env:
+      CHEF_LICENSE: accept-no-persist
+    steps:
       - name: Kitchen Test
         run: kitchen test ${{ matrix.suites }}
