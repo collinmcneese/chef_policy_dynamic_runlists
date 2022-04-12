@@ -17,6 +17,8 @@ jobs:
       - name: install chef-workstation
         uses: actionshub/chef-install@main
   lint:
+    needs:
+      - verify
     strategy:
       matrix:
         cookbooks: ['app_cookbook', 'base_cookbook', 'newapp_cookbook', 'newapp2_cookbook']
@@ -30,6 +32,9 @@ jobs:
           chef install || chef update
           cookstyle
   test:
+    needs:
+      - verify
+      - lint
     strategy:
       matrix:
         suites: ['base', 'newapp-tag', 'newapp2-tag']
