@@ -1,8 +1,8 @@
 # chef_policy_dynamic_runlists
 
-The purpose of this repository is to show specific examples of using a more dynamic run_list with Chef Infra Policy to allow for targeted run-time decisions by Chef Infra Client on nodes for actions which do not span entire Policy Groups.
-
 ![Status](https://github.com/collinmcneese/chef_policy_dynamic_runlists/actions/workflows/validation.yml/badge.svg)
+
+The purpose of this repository is to show specific examples of using a more dynamic run_list with Chef Infra Policy to allow for targeted run-time decisions by Chef Infra Client on nodes for actions which do not span entire Policy Groups.
 
 ## Reference
 
