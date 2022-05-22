@@ -1,6 +1,6 @@
 name 'newapp_cookbook'
 maintainer 'CollinMcNeese'
-maintainer_email 'cmcneese@chef.io'
+maintainer_email 'collin@mydevsandbox.com'
 license 'MIT'
 description 'Installs/Configures newapp_cookbook'
 version '0.1.0'
